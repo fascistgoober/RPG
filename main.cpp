@@ -35,6 +35,9 @@ int main()
     /* Player input */
     char input;
 
+    /* play state */
+    bool play = true;
+
     /* Testing dice.*/
     if(DEBUG)
     {
@@ -47,33 +50,30 @@ int main()
 
     menu();
 
-    while(true)
+    while(play)
     {
-        /* TODO: This is a little annoying. Maybe an indicator instead of "Input"? */
-        std::cout << "Input: " << std::endl;
+        std::cout << "> ";
 
         std::cin >> input;
 
-        /* TODO: Figure out how to do a switch! */
-        if(input == 'r')
+        switch(input)
         {
-            std::cout << "ROLLED: " << roll(bonus, d20) << std::endl;
-        }
-        else if(input == 'm')
-        {
-            menu();
-        }
-        else if(input == 'c')
-        {
-            std::cout << "\033[2J\033[1;1H";
-            menu();
-        }
-        else if(input == 'q')
-        {
-            break;
-        }else
-        {
-            std::cout << "Not proper input. (input 'm' for help!)" << std::endl;
+            case 'r':
+                std::cout << "ROLLED: " << roll(bonus, d20) << std::endl;
+                break;
+            case 'm':
+                menu();
+                break;
+            case 'c':
+                std::cout << "\033[2J\033[1;1H";
+                menu();
+                break;
+            case 'q':
+                play = false;
+                break;
+            default:
+                std::cout << "Not proper input. (input 'm' for help!)" << std::endl;
+                break;
         }
     }
 
