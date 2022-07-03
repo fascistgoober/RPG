@@ -53,13 +53,26 @@ int main()
     while(play)
     {
         std::cout << "> ";
+        
+        int highest_roll;
+        int curr_roll;
 
         std::cin >> input;
 
         switch(input)
         {
             case 'r':
-                std::cout << "ROLLED: " << roll(bonus, d20) << std::endl;
+                curr_roll = roll(bonus, d20);
+                std::cout << "ROLLED: " << curr_roll;
+
+                /* TODO: Retain last 10 rolls. (see: STL.Vector) */
+                /* I don't know how useful this will be... maybe for stat
+                 * creation?*/
+                if(curr_roll > highest_roll)
+                {
+                    highest_roll = curr_roll;
+                }
+                std::cout << " (highest: " << highest_roll << ")" << std::endl;
                 break;
             case 'm':
                 menu();
